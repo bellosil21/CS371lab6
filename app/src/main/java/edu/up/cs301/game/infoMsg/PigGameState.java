@@ -15,12 +15,12 @@ public class PigGameState extends GameState {
         dieVal = 0;
     }
 
-    public PigGameState(int turn, int player0, int player1, int runningTotal, int dieVal){
-        this.turn = turn;
-        this.player0 = player0;
-        this.player1 = player1;
-        this.runningTotal = runningTotal;
-        this.dieVal = dieVal;
+    public PigGameState(PigGameState other){
+        this.turn = other.getTurn();
+        this.player0 = other.getPlayer0Score();
+        this.player1 = other.getPlayer1Score();
+        this.runningTotal = other.getRunningTotal();
+        this.dieVal = other.getDieVal();
     }
 
     public int getTurn(){return this.turn;}
