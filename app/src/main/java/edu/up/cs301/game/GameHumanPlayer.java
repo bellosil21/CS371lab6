@@ -301,6 +301,7 @@ public abstract class GameHumanPlayer implements GamePlayer, Tickable {
 				// pass the state on to the subclass
 				receiveInfo(myInfo);
 			}
+
 		}
 	}
 	

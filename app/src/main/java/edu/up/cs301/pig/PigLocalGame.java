@@ -46,11 +46,11 @@ public class PigLocalGame extends LocalGame {
     @Override
     protected boolean makeMove(GameAction action) {
         //TODO  You will implement this method
-        if (action instanceof PigRollAction){
+        if (action instanceof PigRollAction) {
             Random random = new Random();
             instance.setDieVal(random.nextInt(6) + 1);
 
-            if (instance.getDieVal() == 1){
+            if (instance.getDieVal() == 1) {
                 instance.setRunningTotal(0);
                 if (players.length == 2) {
                     if (instance.getTurn() == 1) {
@@ -59,37 +59,36 @@ public class PigLocalGame extends LocalGame {
                         instance.setTurn(1);
                     }
                 }
-            }
-            else {
+            } else {
                 instance.setRunningTotal(instance.getRunningTotal() + instance.getDieVal());
             }
 
             return true;
         }
 
-        else if(action instanceof PigHoldAction){
+
+        else if(action instanceof PigHoldAction) {
             int newRoll = instance.getRunningTotal();
 
             if (instance.getTurn() == 1) {
                 instance.setPlayer1Score(instance.getPlayer1Score() + newRoll);
-            } else if (instance.getTurn() == 0) {
-                instance.setPlayer0Score(instance.getPlayer0Score() + newRoll);
-            }
-
-            if (players.length == 2) {
-                if (instance.getTurn() == 1) {
+                if (players.length == 2) {
                     instance.setTurn(0);
-                } else if (instance.getTurn() == 0) {
-                    instance.setTurn(1);
                 }
             }
 
-            instance.setRunningTotal(0);
-            return true;
-        }
-        else {
-            return false;
-        }
+                else if (instance.getTurn() == 0) {
+                    instance.setPlayer0Score(instance.getPlayer0Score() + newRoll);
+                    if (players.length == 2) {
+                        instance.setTurn(1);
+                    }
+                }
+
+                instance.setRunningTotal(0);
+                return true;
+            }
+
+        return false;
     }//makeMove
 
     /**

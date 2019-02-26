@@ -64,8 +64,19 @@ public class PigHumanPlayer extends GameHumanPlayer implements OnClickListener {
         //TODO You will implement this method to receive state objects from the game
         if (info instanceof PigGameState){
             PigGameState state = (PigGameState) info;
-            playerScoreTextView.setText("" + state.getPlayer0Score());
-            oppScoreTextView.setText("" + state.getPlayer1Score());
+            TextView p;
+            TextView o;
+            if (this.playerNum == 0){
+                p = playerScoreTextView;
+                o = oppScoreTextView;
+            }
+            else {
+                p = oppScoreTextView;
+                o = playerScoreTextView;
+            }
+
+            p.setText("" + state.getPlayer0Score());
+            o.setText("" + state.getPlayer1Score());
             turnTotalTextView.setText("" + state.getRunningTotal());
             switch (state.getDieVal()){
                 case 1:
